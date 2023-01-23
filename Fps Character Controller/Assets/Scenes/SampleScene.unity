@@ -756,9 +756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e200c568cacecd74f8eadfc4f8fbdb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  body: {fileID: 0}
-  mouseSens: 0.2
+  cam: {fileID: 963194228}
+  body: {fileID: 735749776}
+  mouseSens: 2
 --- !u!54 &2054942922
 Rigidbody:
   m_ObjectHideFlags: 0
