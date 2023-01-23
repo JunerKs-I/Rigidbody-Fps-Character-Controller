@@ -790,8 +790,9 @@ MonoBehaviour:
   mouseSens: 4
   cam: {fileID: 963194228}
   body: {fileID: 735749776}
-  maxSpeed: 7
+  maxSpeed: 8
   runAccel: 25
+  sprintAccel: 35
   jumpForce: 15
   distanceToGround: 0.4
   feetPos: {fileID: 317355937}
@@ -799,6 +800,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   jumpKey: 32
+  sprintKey: 304
 --- !u!54 &2054942922
 Rigidbody:
   m_ObjectHideFlags: 0

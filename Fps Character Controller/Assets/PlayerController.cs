@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float maxSpeed = 7f;
     [SerializeField] float runAccel = 25f;
+    [SerializeField] float sprintAccel = 30f;
     float accel;
+    bool sprinting;
     Vector3 moveDirection;
     Vector2 movement;
     Rigidbody rb;
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Keys")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
 
     #endregion
 
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         GetMouseInput();
         GetKeyboardInput();
+        ControlAccel();
     }
 
     void FixedUpdate()
@@ -75,6 +79,7 @@ public class PlayerController : MonoBehaviour
     void GetKeyboardInput()
     {
         if (Input.GetKeyDown(jumpKey) && isGrounded) Jump();
+        sprinting = Input.GetKey(sprintKey);
 
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -91,15 +96,17 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-
         rb.AddForce(moveDirection.normalized * accel, ForceMode.Force);
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
+
+    void ControlAccel() => accel = !sprinting ? runAccel : sprintAccel;
 
     #endregion
 }
