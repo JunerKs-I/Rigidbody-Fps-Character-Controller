@@ -74,11 +74,15 @@ public class PlayerController : MonoBehaviour
 
     void GetKeyboardInput()
     {
+        if (Input.GetKeyDown(jumpKey) && isGrounded) Jump();
+
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        moveDirection = cam.forward * movement.y + cam.right * movement.x;
+        //Magic stuff
+        var forward = new Vector3(-cam.right.z, 0f, cam.right.x);
 
-        if (Input.GetKeyDown(jumpKey) && isGrounded) Jump();
+        moveDirection = forward * movement.y + cam.right * movement.x;
+
     }
 
     #endregion
